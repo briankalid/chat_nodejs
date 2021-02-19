@@ -4,11 +4,10 @@
   "description": "Simple chat project",
   "main": "server.js",
   "scripts": {
-      "start": "NODE_ENV=production node server.js",
-      "start-dev": "DEBUG=chat nodemon server.js",
-      "lint": "standard"
+    "start": "NODE_ENV=production node server.js",
+    "start-dev": "DEBUG=chat nodemon server.js",
+    "lint": "standard"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/briankalid/chat_nodejs.git"
