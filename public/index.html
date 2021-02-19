@@ -5,8 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ir=edge">
     <title> Chat </title>
+    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
 </head>
-<body>
-    <h1>hola mundo jeje</h1>
 
+<body>
+    <!---<h1>hola mundo jeje</h1>--->
+
+    <h3>Mensajes:</h3>
+ <div id="messages"></div>
+    <ul id="listado-msjs"></ul>
+    <form onsubmit="return addMessage(this)">
+        <input type="text" id="username" placeholder="Tu Nombre" >   
+        <input type="text" id="texto" placeholder="Cuéntanos algo...">  
+        <input type="submit" value="Enviar!">
+    </form>
+    <script type='text/javascript'>
+        var socket = io()
+        socket.on('messages', function(data) { 
+          console.log(data);
+          render(data);
+        });
+
+        function render (data) { 
+            var html = data.map(function(elem, index) { 
+                return(`<div>
+                    <strong>${elem.author}</strong>: 
+                    <em>${elem.text}</em> </div>`);
+            }).join(" ");   document.getElementById('messages').innerHTML = html; 
+        } 
+
+        function addMessage(e) { 
+            var message = { 
+            author: document.getElementById('username').value, 
+            text: document.getElementById('texto').value 
+            }; 
+        socket.emit('new-message', message); return false; 
+        } 
+    </script>
 </body>
+</html>
