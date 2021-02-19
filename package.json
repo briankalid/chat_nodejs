@@ -4,8 +4,11 @@
   "description": "Simple chat project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "start": "NODE_ENV=production node server.js",
+      "start-dev": "DEBUG=chat nodemon server.js",
+      "lint": "standard"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/briankalid/chat_nodejs.git"
@@ -19,5 +22,9 @@
   "devDependencies": {
     "nodemon": "^2.0.7",
     "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "debug": "^4.3.1",
+    "express": "^4.17.1"
   }
 }
